@@ -11,18 +11,18 @@ namespace TrashCollector.Models
         
         [Key]
         public int Id { get; set; }
-        public string PickupDay { get; set; }
-        public string FirstName { get; set; }
-        public string LastDay { get; set; }
-        public int ExtraPickupDate { get; set; }
-        public string StreetAddress { get; set; }
-        public string City { get; set; }
-        public string State { get; set; }
-        public int Zip { get; set; }
-        public double Balance { get; set; }
-        public string SuspendedStart { get; set; }
-        public string SuspendedEnd { get; set; }
-        public bool PickupConfirm { get; set; }
+        public string pickupDay { get; set; }
+        public string firstName { get; set; }
+        public string lastDay { get; set; }
+        public int extraPickupDate { get; set; }
+        public string streetAddress { get; set; }
+        public string city { get; set; }
+        public string state { get; set; }
+        public int zip { get; set; }
+        public double balance { get; set; }
+        public string suspendedStart { get; set; }
+        public string suspendedEnd { get; set; }
+        public bool pickupConfirm { get; set; }
 
 
     }
