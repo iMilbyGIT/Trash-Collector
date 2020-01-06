@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -8,9 +9,16 @@ namespace TrashCollector.Models
 {
     public class Customer
     {
-        
+        public Customer()
+        {
+
+        }
         [Key]
         public int Id { get; set; }
+
+        [ForeignKey("ApplicationUser")]
+        public string ApplicationId { get; set; }
+        public ApplicationUser ApplicationUser { get; set; }
         public string pickupDay { get; set; }
         public string firstName { get; set; }
         public string lastDay { get; set; }
@@ -23,6 +31,7 @@ namespace TrashCollector.Models
         public string suspendedStart { get; set; }
         public string suspendedEnd { get; set; }
         public bool pickupConfirm { get; set; }
+
 
 
     }
