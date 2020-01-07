@@ -23,36 +23,14 @@ namespace TrashCollector.Controllers
         {
             ViewBag.Message = "Your application description page.";
 
-            if (User.IsInRole("Customer"))
-            {
-                return RedirectToAction("About", "Customers");
-            }
-            else if (User.IsInRole("Employee"))
-            {
-                return RedirectToAction("About", "Employees");
-            }
-            else
-            {
-                return RedirectToAction("Index", "Home");
-            }
+            return View();
         }
 
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
 
-            if (User.IsInRole("Customer"))
-            {
-                return RedirectToAction("Contact", "Customers");
-            }
-            else if (User.IsInRole("Employee"))
-            {
-                return RedirectToAction("Contact", "Employees");
-            }
-            else
-            {
-                return RedirectToAction("Index", "Home");
-            }
+            return View();
         }
     }
 }
