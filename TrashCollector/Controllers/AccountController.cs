@@ -24,7 +24,6 @@ namespace TrashCollector.Controllers
             context = new ApplicationDbContext();
         }
 
-
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
         {
             UserManager = userManager;
