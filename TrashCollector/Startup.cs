@@ -44,24 +44,17 @@ namespace TrashCollector
                 }
             }
             // creating Creating Manager role     
-            if (!roleManager.RoleExists("Manager"))
+            if (!roleManager.RoleExists("Employee"))
             {
                 var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole();
                 role.Name = "Manager";
                 roleManager.Create(role);
             }
             // creating Creating Employee role     
-            if (!roleManager.RoleExists("Employee"))
-            {
-                var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole();
-                role.Name = "Employee";
-                roleManager.Create(role);
-            }
-            // creating Creating Employee role     
             if (!roleManager.RoleExists("Customer"))
             {
                 var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole();
-                role.Name = "Customer";
+                role.Name = "Employee";
                 roleManager.Create(role);
             }
         }
