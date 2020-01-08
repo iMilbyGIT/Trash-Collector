@@ -86,7 +86,7 @@ namespace TrashCollector.Controllers
                 employee.ApplicationId = User.Identity.GetUserId();
                 db.Entry(employee).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", employee);
             }
             return View(employee);
         }
@@ -114,7 +114,7 @@ namespace TrashCollector.Controllers
             Employee employee = db.Employees.Find(id);
             db.Employees.Remove(employee);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", employee);
         }
 
         protected override void Dispose(bool disposing)
@@ -126,10 +126,11 @@ namespace TrashCollector.Controllers
             base.Dispose(disposing);
         }
 
-        public void FindZipsForWork(Customer customer, Employee employee)
-        {
-            var WorkZips = db.Customers.Find(customer.zip == employee.zip);
-        }
+        //public void FindZipsForWork(Customer customer, Employee employee)
+        //{
+        //    var CustZip = db.Customers.Where(customer.zip == employee.zip);
+                            
+        //}
         //public void ConfirmPickup(bool confirmPickup, Customer customer)
         //{
         //    if (confirmPickup == true)
