@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -82,6 +83,7 @@ namespace TrashCollector.Controllers
         {
             if (ModelState.IsValid)
             {
+                employee.ApplicationId = User.Identity.GetUserId();
                 db.Entry(employee).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -123,5 +125,26 @@ namespace TrashCollector.Controllers
             }
             base.Dispose(disposing);
         }
+
+        //public void FindZipsForWork(int zip)
+        //{
+        //    var customer = db.Customers.Find(zip);
+        //    db.Customers.GroupBy(db.Customers.zip = db.Employees.zip); 
+        //}
+        //public void ConfirmPickup(bool confirmPickup)
+        //{
+        //    confirmPickup = db.Customers.Find(pickupConfirm)
+        //    if (confirmPickup)
+        //    {
+        //        var customer = db.Customers.SelectMany();
+        //    }    
+        //}
+        //public void AddBalanceToCustomerAccount(int balance)
+        //{
+        //    if (ConfirmPickup = true)
+        //    {
+                
+        //    }            
+        //}
     }
 }
