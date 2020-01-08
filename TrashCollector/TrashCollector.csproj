@@ -185,6 +185,10 @@
     <Compile Include="Migrations\202001062200536_ForeignKeyMigration.Designer.cs">
       <DependentUpon>202001062200536_ForeignKeyMigration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202001082039437_AddZipToEmplMigration.cs" />
+    <Compile Include="Migrations\202001082039437_AddZipToEmplMigration.Designer.cs">
+      <DependentUpon>202001082039437_AddZipToEmplMigration.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -288,6 +292,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202001062200536_ForeignKeyMigration.resx">
       <DependentUpon>202001062200536_ForeignKeyMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001082039437_AddZipToEmplMigration.resx">
+      <DependentUpon>202001082039437_AddZipToEmplMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

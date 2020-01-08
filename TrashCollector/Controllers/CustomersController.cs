@@ -1,11 +1,7 @@
 ﻿using Microsoft.AspNet.Identity;
-using System;
-using System.Collections.Generic;
-using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using TrashCollector.Models;
 
@@ -16,18 +12,12 @@ namespace TrashCollector.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Customers
-        public ActionResult Index()
+        public ActionResult Index(Customer customer)
         {
-            return View(db.Customers.FirstOrDefault());
-            //return View(db.Customers.ToList());
+            var thing = db.Customers.ToList();
+            return View();
         }
 
-        //public ActionResult Details(int id)
-        //{
-        //    var player = db.Customers.Include(m => m.Team).SingleOrDefault(m => m.Id == id);
-
-        //    return View(player);
-        //}
         // GET: Customers/Details/5
         public ActionResult Details(int? id)
         {
@@ -45,14 +35,6 @@ namespace TrashCollector.Controllers
 
         // GET: Customers/Create
         public ActionResult Create()
-        //{
-        //    var customers = db.Customers.ToList();
-        //    Customer customer = new Customer()
-        //    {
-        //        Customers = customers
-        //    };
-        //    return View(customer);
-        //}
         {
             return View();
         }
@@ -66,10 +48,11 @@ namespace TrashCollector.Controllers
         {
             if (ModelState.IsValid)
             {
+                customer.balance = 25;
                 customer.ApplicationId = User.Identity.GetUserId();
                 db.Customers.Add(customer);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index",customer);
             }
 
             return View(customer);
@@ -77,15 +60,6 @@ namespace TrashCollector.Controllers
 
         // GET: Customers/Edit/5
         public ActionResult Edit(int? id)
-        //{
-        //    var customer = db.Customers.SingleOrDefault(c => c.Id == id);
-        //    customer.Customers = db.Customers.ToList();
-        //    if (customer == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    return View(customer);
-        //}
         {
             if (id == null)
             {
@@ -108,9 +82,10 @@ namespace TrashCollector.Controllers
         {
             if (ModelState.IsValid)
             {
+                //db.Entry(customer.balance).State = EntityState.Unchanged;
                 db.Entry(customer).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", customer);
             }
             return View(customer);
         }
@@ -140,7 +115,6 @@ namespace TrashCollector.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
-
         protected override void Dispose(bool disposing)
         {
             if (disposing)

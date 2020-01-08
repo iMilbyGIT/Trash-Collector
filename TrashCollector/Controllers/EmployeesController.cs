@@ -53,7 +53,7 @@ namespace TrashCollector.Controllers
             {
                 db.Employees.Add(employee);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", employee);
             }
 
             return View(employee);
@@ -126,25 +126,20 @@ namespace TrashCollector.Controllers
             base.Dispose(disposing);
         }
 
-        //public void FindZipsForWork(int zip)
+        public void FindZipsForWork(Customer customer, Employee employee)
+        {
+            var WorkZips = db.Customers.Find(customer.zip == employee.zip);
+        }
+        //public void ConfirmPickup(bool confirmPickup, Customer customer)
         //{
-        //    var customer = db.Customers.Find(zip);
-        //    db.Customers.GroupBy(db.Customers.zip = db.Employees.zip); 
-        //}
-        //public void ConfirmPickup(bool confirmPickup)
-        //{
-        //    confirmPickup = db.Customers.Find(pickupConfirm)
-        //    if (confirmPickup)
+        //    if (confirmPickup == true)
         //    {
-        //        var customer = db.Customers.SelectMany();
-        //    }    
+        //        //AddBalanceToCustomerAccount();
+        //    }
         //}
-        //public void AddBalanceToCustomerAccount(int balance)
+        //public void AddBalanceToCustomerAccount(int balance, Customer customer)
         //{
-        //    if (ConfirmPickup = true)
-        //    {
-                
-        //    }            
+        //    Customer balance = customer.balance = 25++;
         //}
     }
 }

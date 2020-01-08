@@ -21,5 +21,6 @@ namespace TrashCollector.Models
         public ApplicationUser ApplicationUser { get; set; }
         public string firstName { get; set; }
         public string lastName { get; set; }
+        public int zip { get; set; }
     }
 }
