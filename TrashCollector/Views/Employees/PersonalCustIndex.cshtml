@@ -8,13 +8,13 @@
 <h2>PersonalCustIndex</h2>
 
 @*<p>
-        @Html.ActionLink("Create New", "Create")
-    </p>*@
+    @Html.ActionLink("Create New", "Create")
+</p>*@
 <table class="table">
     <tr>
         @*<th>
-                @Html.DisplayNameFor(model => model.ApplicationId)
-            </th>*@
+            @Html.DisplayNameFor(model => model.ApplicationId)
+        </th>*@
         <th>
             @Html.DisplayNameFor(model => model.pickupDay)
         </th>
@@ -31,11 +31,11 @@
             @Html.DisplayNameFor(model => model.streetAddress)
         </th>
         @*<th>
-                @Html.DisplayNameFor(model => model.city)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.state)
-            </th>*@
+            @Html.DisplayNameFor(model => model.city)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.state)
+        </th>*@
         <th>
             @Html.DisplayNameFor(model => model.zip)
         </th>
@@ -54,62 +54,58 @@
         <th></th>
     </tr>
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            @*<td>
-                    @Html.DisplayFor(modelItem => item.ApplicationId)
-                </td>*@
-            <td>
-                @Html.DisplayFor(modelItem => item.pickupDay)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.firstName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.lastName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.extraPickupDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.streetAddress)
-            </td>
-            @*<td>
-                    @Html.DisplayFor(modelItem => item.city)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.state)
-                </td>*@
-            <td>
-                @Html.DisplayFor(modelItem => item.zip)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.balance)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.suspendedStart)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.suspendedEnd)
-            </td>
-            <td>
-                @Html.CheckBoxFor(modelItem => item.pickupConfirm)
-                <div class="form-group">
-                    <div class="col-md-offset-0 col-md-10">
-                        <input type="submit" value="Save" class="btn btn-default" />
-                    </div>
+@foreach (var item in Model) {
+    <tr>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.ApplicationId)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.pickupDay)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.firstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.lastName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.extraPickupDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.streetAddress)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.city)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.state)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.zip)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.balance)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.suspendedStart)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.suspendedEnd)
+        </td>
+        <td>
+            @Html.CheckBoxFor(modelItem => item.pickupConfirm)
+            <div class="form-group">
+                <div class="col-md-offset-0 col-md-10">
+                    <input type="submit" value="Save" class="btn btn-default" />
                 </div>
-            </td>
+            </div>
+        </td>
 
-            @*<td>
-                    @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-                    @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-                </td>*@
-        </tr>
-    }
+        @*<td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+        </td>*@
+    </tr>
+}
 
 </table>
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
