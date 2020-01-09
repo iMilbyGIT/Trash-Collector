@@ -32,9 +32,9 @@ namespace TrashCollector
                 //Here we create a Admin super user who will maintain the website                   
 
                 var user = new ApplicationUser();
-                user.UserName = "adam";
+                user.UserName = "adamadmin";
                 user.Email = "adam@gmail.com";
-                string userPWD = "mada";
+                string userPWD = "admin123!";
                 var chkUser = UserManager.Create(user, userPWD);
 
                 //Add default User to Role Admin    

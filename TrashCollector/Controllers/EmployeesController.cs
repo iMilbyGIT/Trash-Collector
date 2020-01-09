@@ -20,7 +20,23 @@ namespace TrashCollector.Controllers
         {
             return View(db.Employees.ToList());
         }
-
+        public ActionResult PersonalCustIndex()
+        {
+            var Id = User.Identity.GetUserId();
+            var currentEmpl = db.Employees.Where(e => e.ApplicationId == Id).SingleOrDefault();
+            string todayDate = DateTime.Now.ToShortDateString();
+            var customers = db.Customers.Include(c => c.ApplicationUser).Where(c => c.zip == currentEmpl.zip).ToList();
+            return View(customers);
+        }
+        public ActionResult GetCustByDay()
+        {
+            DateTime rightmeow = DateTime.Now;
+            string currentDay = rightmeow.DayOfWeek.ToString();
+            var id = User.Identity.GetUserId();
+            var currentEmpl = db.Employees.Where(e => e.ApplicationId == id).SingleOrDefault();
+            var cust = db.Customers.Include(c => c.ApplicationUser).Where(c => c.pickupDay == currentDay && c.zip == currentEmpl.zip).ToList();
+            return View("PersonalCustIndex", cust);
+        }
         // GET: Employees/Details/5
         public ActionResult Details(int? id)
         {
@@ -51,6 +67,7 @@ namespace TrashCollector.Controllers
         {
             if (ModelState.IsValid)
             {
+                employee.ApplicationId = User.Identity.GetUserId();
                 db.Employees.Add(employee);
                 db.SaveChanges();
                 return RedirectToAction("Index", employee);

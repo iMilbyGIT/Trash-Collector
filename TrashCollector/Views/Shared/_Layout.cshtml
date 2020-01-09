@@ -24,13 +24,13 @@
                     @if (User.IsInRole("Customer"))
                     {
                         <li>@Html.ActionLink("Home", "Index", "Customers")</li>
-                        <li>@Html.ActionLink("About", "Details/6", "Customers")</li>
+                        <li>@Html.ActionLink("About", "Details/9", "Customers")</li>
                         <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                     }
                     else if (User.IsInRole("Employee"))
                     {
                         <li>@Html.ActionLink("Home", "Index", "Employees")</li>
-                        <li>@Html.ActionLink("Customer List", "Index", "Customers")</li>
+                        <li>@Html.ActionLink("Customer List", "PersonalCustIndex", "Employees")</li>
                         <li>@Html.ActionLink("Empl Acct Info", "Index", "Employees")</li>
                     }
                     else
