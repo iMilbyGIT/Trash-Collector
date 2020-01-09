@@ -29,8 +29,8 @@
                     }
                     else if (User.IsInRole("Employee"))
                     {
-                        <li>@Html.ActionLink("Home", "Index", "Employees")</li>
-                        <li>@Html.ActionLink("Customer List", "PersonalCustIndex", "Employees")</li>
+                        <li>@Html.ActionLink("Home", "PersonalCustIndex", "Employees")</li>
+                        @*<li>@Html.ActionLink("Customer List", "Index", "Employees")</li>*@
                         <li>@Html.ActionLink("Empl Acct Info", "Index", "Employees")</li>
                     }
                     else

@@ -37,6 +37,19 @@ namespace TrashCollector.Controllers
             var cust = db.Customers.Include(c => c.ApplicationUser).Where(c => c.pickupDay == currentDay && c.zip == currentEmpl.zip).ToList();
             return View("PersonalCustIndex", cust);
         }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult PersonalCustIndex(Customer customer)
+        {
+            if (ModelState.IsValid)
+            {
+                customer.ApplicationId = User.Identity.GetUserId();
+                db.Entry(customer.pickupConfirm).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("PersonalCustIndex", customer);
+            }
+            return View(customer);
+        }
         // GET: Employees/Details/5
         public ActionResult Details(int? id)
         {
@@ -142,22 +155,5 @@ namespace TrashCollector.Controllers
             }
             base.Dispose(disposing);
         }
-
-        //public void FindZipsForWork(Customer customer, Employee employee)
-        //{
-        //    var CustZip = db.Customers.Where(customer.zip == employee.zip);
-                            
-        //}
-        //public void ConfirmPickup(bool confirmPickup, Customer customer)
-        //{
-        //    if (confirmPickup == true)
-        //    {
-        //        //AddBalanceToCustomerAccount();
-        //    }
-        //}
-        //public void AddBalanceToCustomerAccount(int balance, Customer customer)
-        //{
-        //    Customer balance = customer.balance = 25++;
-        //}
     }
 }
