@@ -24,8 +24,8 @@ namespace TrashCollector.Controllers
         {
             var Id = User.Identity.GetUserId();
             var currentEmpl = db.Employees.Where(e => e.ApplicationId == Id).SingleOrDefault();
-            string todayDate = DateTime.Now.ToShortDateString();
-            var customers = db.Customers.Include(c => c.ApplicationUser).Where(c => c.zip == currentEmpl.zip).ToList();
+            string todayDay = DateTime.Today.ToShortDateString();
+            var customers = db.Customers.Include(c => c.ApplicationUser).Where(c => c.zip == currentEmpl.zip || c.pickupDay == todayDay).ToList();
             return View(customers);
         }
         public ActionResult GetCustByDay()
@@ -63,7 +63,7 @@ namespace TrashCollector.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,firstName,lastName")] Employee employee)
+        public ActionResult Create([Bind(Include = "Id,firstName,lastName,zip")] Employee employee)
         {
             if (ModelState.IsValid)
             {
@@ -96,7 +96,7 @@ namespace TrashCollector.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,firstName,lastName")] Employee employee)
+        public ActionResult Edit([Bind(Include = "Id,firstName,lastName,zip")] Employee employee)
         {
             if (ModelState.IsValid)
             {
