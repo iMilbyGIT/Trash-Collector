@@ -20,6 +20,22 @@ namespace TrashCollector.Controllers
         {
             return View(db.Employees.ToList());
         }
+        public bool IsPickupConfirmed(Customer customer)
+        {
+            if (customer.pickupConfirm == true)
+            {
+                customer.ApplicationId = User.Identity.GetUserId();
+                db.Entry(customer.pickupConfirm).State = EntityState.Modified;
+                db.SaveChanges();
+            }
+            if (customer.pickupConfirm == false)
+            {
+                customer.ApplicationId = User.Identity.GetUserId();
+                db.Entry(customer.pickupConfirm).State = EntityState.Modified;
+                db.SaveChanges();
+            }
+            return customer.pickupConfirm;
+        }
         public ActionResult PersonalCustIndex()
         {
             var Id = User.Identity.GetUserId();
@@ -41,7 +57,7 @@ namespace TrashCollector.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult PersonalCustIndex([Bind(Include = "Id,pickupDay,firstName,lastName,extraPickupDate,streetAddress,zip,balance,suspendedStart,suspendedEnd,pickupConfirm")]Customer customer)
         {
-            if (customer.pickupConfirm == true || false)
+            if (customer.pickupConfirm == true || false) //(ModelState.IsValid)
             {
                 customer.ApplicationId = User.Identity.GetUserId();
                 db.Entry(customer.pickupConfirm).State = EntityState.Modified;
