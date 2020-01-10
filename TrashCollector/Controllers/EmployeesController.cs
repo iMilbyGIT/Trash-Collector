@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNet.Identity;
+﻿            using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -30,7 +30,7 @@ namespace TrashCollector.Controllers
         }
         public ActionResult GetCustByDay()
         {
-            DateTime rightmeow = DateTime.Now;
+            DateTime rightmeow = DateTime.Today;
             string currentDay = rightmeow.DayOfWeek.ToString();
             var id = User.Identity.GetUserId();
             var currentEmpl = db.Employees.Where(e => e.ApplicationId == id).SingleOrDefault();
@@ -39,7 +39,7 @@ namespace TrashCollector.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult PersonalCustIndex(Customer customer)
+        public ActionResult PersonalCustIndex([Bind(Include = "Id,pickupDay,firstName,lastName,extraPickupDate,streetAddress,zip,balance,suspendedStart,suspendedEnd,pickupConfirm")]Customer customer)
         {
             if (ModelState.IsValid)
             {
