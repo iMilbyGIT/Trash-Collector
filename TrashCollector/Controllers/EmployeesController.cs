@@ -1,4 +1,4 @@
-﻿            using Microsoft.AspNet.Identity;
+﻿using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -41,7 +41,7 @@ namespace TrashCollector.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult PersonalCustIndex([Bind(Include = "Id,pickupDay,firstName,lastName,extraPickupDate,streetAddress,zip,balance,suspendedStart,suspendedEnd,pickupConfirm")]Customer customer)
         {
-            if (ModelState.IsValid)
+            if (customer.pickupConfirm == true || false)
             {
                 customer.ApplicationId = User.Identity.GetUserId();
                 db.Entry(customer.pickupConfirm).State = EntityState.Modified;

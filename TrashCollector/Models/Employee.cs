@@ -10,10 +10,10 @@ namespace TrashCollector.Models
 {
     public class Employee
     {
-        public Employee()
-        {
+        //public Employee()
+        //{
 
-        }
+        //}
         [Key]
         public int Id { get; set; }
 

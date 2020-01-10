@@ -10,10 +10,10 @@ namespace TrashCollector.Models
 {
     public class Customer
     {
-        public Customer()
-        {
+        //public Customer()
+        //{
 
-        }
+        //}
         [Key]
         public int Id { get; set; }
 
