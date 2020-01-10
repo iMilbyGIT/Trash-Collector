@@ -31,7 +31,7 @@ namespace TrashCollector.Controllers
         public ActionResult GetCustByDay()
         {
             DateTime rightmeow = DateTime.Today;
-            string currentDay = rightmeow.DayOfWeek.ToString();
+            string currentDay = rightmeow.Day.ToString();
             var id = User.Identity.GetUserId();
             var currentEmpl = db.Employees.Where(e => e.ApplicationId == id).SingleOrDefault();
             var cust = db.Customers.Include(c => c.ApplicationUser).Where(c => c.pickupDay == currentDay && c.zip == currentEmpl.zip).ToList();
@@ -45,7 +45,7 @@ namespace TrashCollector.Controllers
             {
                 customer.ApplicationId = User.Identity.GetUserId();
                 db.Entry(customer.pickupConfirm).State = EntityState.Modified;
-                db.SaveChanges();
+                db.SaveChangesAsync();
                 return RedirectToAction("PersonalCustIndex", customer);
             }
             return View(customer);

@@ -94,7 +94,7 @@
             <td>
                 @using (Html.BeginForm())
                 {
-
+                    @Html.AntiForgeryToken()
                     <div class="form-group">
                         @Html.CheckBoxFor(modelItem => item.pickupConfirm)
                         @Html.HiddenFor(modelItem => item.pickupConfirm)
