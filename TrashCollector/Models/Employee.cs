@@ -29,5 +29,8 @@ namespace TrashCollector.Models
 
         [DisplayName("Zip Code")]
         public int zip { get; set; }
+
+        [DisplayName("Your Pickup Day (enter day of week)")]
+        public string pickupDay { get; set; }
     }
 }

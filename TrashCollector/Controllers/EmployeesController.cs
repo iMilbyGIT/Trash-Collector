@@ -20,18 +20,20 @@ namespace TrashCollector.Controllers
         {
             return View(db.Employees.ToList());
         }
+
         public bool IsPickupConfirmed(Customer customer)
         {
+            string currentUserId = User.Identity.GetUserId();
+            var currentCust = db.Customers.Where(c => c.ApplicationId == currentUserId).SingleOrDefault();
+
             if (customer.pickupConfirm == true)
             {
-                customer.ApplicationId = User.Identity.GetUserId();
-                db.Entry(customer.pickupConfirm).State = EntityState.Modified;
+                db.Entry(customer.balance + 25).State = EntityState.Modified;
                 db.SaveChanges();
             }
             if (customer.pickupConfirm == false)
             {
-                customer.ApplicationId = User.Identity.GetUserId();
-                db.Entry(customer.pickupConfirm).State = EntityState.Modified;
+                db.Entry(customer.pickupConfirm).State = EntityState.Unchanged;
                 db.SaveChanges();
             }
             return customer.pickupConfirm;
@@ -41,7 +43,7 @@ namespace TrashCollector.Controllers
             var Id = User.Identity.GetUserId();
             var currentEmpl = db.Employees.Where(e => e.ApplicationId == Id).SingleOrDefault();
             string todayDay = DateTime.Today.ToShortDateString();
-            var customers = db.Customers.Include(c => c.ApplicationUser).Where(c => c.zip == currentEmpl.zip || c.pickupDay == todayDay).ToList();
+            var customers = db.Customers.Include(c => c.ApplicationUser).Where(c => c.zip == currentEmpl.zip).ToList();
             return View(customers);
         }
         public ActionResult GetCustByDay()
@@ -57,14 +59,20 @@ namespace TrashCollector.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult PersonalCustIndex([Bind(Include = "Id,pickupDay,firstName,lastName,extraPickupDate,streetAddress,zip,balance,suspendedStart,suspendedEnd,pickupConfirm")]Customer customer)
         {
-            if (customer.pickupConfirm == true || false) //(ModelState.IsValid)
+            if (customer.pickupConfirm == true)
             {
-                customer.ApplicationId = User.Identity.GetUserId();
-                db.Entry(customer.pickupConfirm).State = EntityState.Modified;
-                db.SaveChangesAsync();
+                string currentUserId = User.Identity.GetUserId();
+                var currentCust = db.Customers.Where(c => c.ApplicationId == currentUserId).SingleOrDefault();
+                db.Entry(customer.balance + 25).State = EntityState.Modified;
+                db.SaveChanges();
                 return RedirectToAction("PersonalCustIndex", customer);
             }
-            return View(customer);
+            else if (customer.pickupConfirm == false)
+            {
+                return View("PersonalCustIndex", customer);
+            }
+
+            return View("PersonalCustIndex", customer);
         }
         // GET: Employees/Details/5
         public ActionResult Details(int? id)

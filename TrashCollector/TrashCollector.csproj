@@ -198,6 +198,10 @@
     <Compile Include="Migrations\202001102031351_jQDateMigration.Designer.cs">
       <DependentUpon>202001102031351_jQDateMigration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202001122348120_PickupDayEmplMigration.cs" />
+    <Compile Include="Migrations\202001122348120_PickupDayEmplMigration.Designer.cs">
+      <DependentUpon>202001122348120_PickupDayEmplMigration.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -355,6 +359,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202001102031351_jQDateMigration.resx">
       <DependentUpon>202001102031351_jQDateMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001122348120_PickupDayEmplMigration.resx">
+      <DependentUpon>202001122348120_PickupDayEmplMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
